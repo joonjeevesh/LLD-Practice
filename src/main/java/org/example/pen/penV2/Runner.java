@@ -4,7 +4,6 @@ import org.example.pen.penV2.models.*;
 import org.example.pen.penV2.models.enums.BodyMaterialType;
 import org.example.pen.penV2.models.enums.InkType;
 import org.example.pen.penV2.strategy.NotSoSmoothWritingStrategy;
-import org.example.penV2.models.*;
 import org.example.pen.penV2.models.enums.PenType;
 import org.example.pen.penV2.models.enums.TipType;
 import org.example.pen.penV2.strategy.SmoothWritingStrategy;

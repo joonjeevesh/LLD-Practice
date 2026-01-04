@@ -1,7 +1,6 @@
 package org.example.pen.penV1;
 
 import org.example.pen.penV1.models.*;
-import org.example.penV1.models.*;
 import org.example.pen.penV1.strategy.NotSoSmoothWritingStrategy;
 import org.example.pen.penV1.strategy.SmoothWritingStrategy;
 
