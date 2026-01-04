@@ -2,11 +2,12 @@ package org.example.pen.penV2.models;
 
 import lombok.Builder;
 import lombok.Getter;
+import org.example.pen.penV2.interfaces.IRefillable;
 import org.example.pen.penV2.models.enums.PenType;
 import org.example.pen.penV2.strategy.IWritingStrategy;
 
 @Getter
-public class RefillablePen extends RefillPen {
+public class RefillablePen extends RefillPen implements IRefillable {
 
     @Builder(builderMethodName = "refillablePenBuilder")
     public RefillablePen(Body body, String brand, String model, PenType penType, IWritingStrategy writingStrategy, Refill refill) {

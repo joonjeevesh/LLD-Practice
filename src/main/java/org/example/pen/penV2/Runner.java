@@ -1,5 +1,7 @@
 package org.example.pen.penV2;
 
+import org.example.pen.penV2.factories.PenFactory;
+import org.example.pen.penV2.interfaces.IRefillable;
 import org.example.pen.penV2.models.*;
 import org.example.pen.penV2.models.enums.BodyMaterialType;
 import org.example.pen.penV2.models.enums.InkType;
@@ -58,7 +60,9 @@ public class Runner
                 .text("Cap Body")
                 .build();
 
-        NonRefillablePen blackNonRefillableBallPen = NonRefillablePen.builder()
+        //subclass not mentioned!
+        //can easily change nonRefillablePen instance from factory without anything breaking!!
+        Pen blackNonRefillableBallPen = PenFactory.createNonRefillablePen()
                 .penType(PenType.BALL)
                 .body(clickBody)
                 .model("Omni")
@@ -68,7 +72,7 @@ public class Runner
                 .writingStrategy(new NotSoSmoothWritingStrategy())
                 .build();
 
-        RefillablePen blueRefillableGenPen = RefillablePen.refillablePenBuilder()
+        Pen blueRefillableGenPen = PenFactory.createRefillablePen()
                 .brand("Cello")
                 .body(capBody)
                 .refill(gelRefill)
@@ -82,6 +86,6 @@ public class Runner
         blackNonRefillableBallPen.write();
         blueRefillableGenPen.write();
 
-        blueRefillableGenPen.changeRefill(gelRefill);
+        ((IRefillable) blueRefillableGenPen).changeRefill(gelRefill);
     }
 }
