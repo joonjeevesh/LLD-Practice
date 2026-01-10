@@ -40,12 +40,19 @@ public class TicTacToeTest {
 
     @Test
     public void boardSizeIsCorrect() {
-        assertEquals("Board size mismatch", 3, this.game.getBoard().length);
+        assertEquals("Board size mismatch", 3, this.game.getBoard().getCells().length);
     }
 
     @Test
     public void playerMovesCorrectly() {
         game.move(humanPlayer, new Position(1, 1));
-        assertEquals("Player does not move as expected", game.getBoard()[1][1], humanPlayer.getSymbol());
+        assertEquals("Player does not move as expected", game.getBoard().getCells()[1][1].getSymbol(), humanPlayer.getSymbol());
+    }
+
+    @Test
+    public void undoStack() {
+        Position toPlay = new Position(1, 1);
+        game.move(humanPlayer, toPlay);
+        assertEquals("Undo works as expected", game.undo(), toPlay);
     }
 }

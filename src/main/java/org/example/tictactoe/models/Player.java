@@ -8,7 +8,8 @@ import lombok.Getter;
 public abstract class Player {
     protected Symbol symbol;
 
-    public void play(Symbol[][] board, Position position) {
-        board[position.getI()][position.getJ()] = this.symbol;
+    public Position play(Board board, Position position) {
+        board.getCell(position).setSymbol(this.symbol);
+        return position;
     }
 }

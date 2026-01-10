@@ -4,23 +4,26 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import org.example.tictactoe.strategies.IWinningStrategy;
-
 import java.util.List;
+import java.util.Stack;
 
 @Getter
 public class Game {
-    private Symbol[][] board;
+    private Board board;
     private List<Player> players;
     private IWinningStrategy winningStrategy;
     @Getter(AccessLevel.NONE)
     private int totalMovesLeft;
+    @Getter(AccessLevel.NONE)
+    private Stack<Position> undoStack;
 
     @Builder
     public Game(List<Player> players, int boardSize, IWinningStrategy winningStrategy) {
-        this.board = new Symbol[boardSize][boardSize];
+        this.board = new Board(boardSize);
         this.players = players;
         this.winningStrategy = winningStrategy;
         this.totalMovesLeft = boardSize*boardSize;
+        undoStack = new Stack<>();
     }
 
     //this method is used when bot player moves
@@ -29,9 +32,16 @@ public class Game {
     }
 
     public Outcome move(Player player, Position position) {
-        player.play(this.board, position);
+        Position played = player.play(this.board, position);
+        undoStack.push(played);
         this.totalMovesLeft--;
         return checkOutcome(player.getSymbol());
+    }
+
+    public Position undo() {
+        Position lastPlayed = undoStack.pop();
+        totalMovesLeft++;
+        return lastPlayed;
     }
 
     private Outcome checkOutcome(Symbol symbol) {

@@ -16,8 +16,8 @@ public class BotPlayer extends Player{
     }
 
     @Override
-    public void play(Symbol[][] board, Position position) {
+    public Position play(Board board, Position position) {
         position = botStrategy.getPosition(board, this.symbol);
-        super.play(board, position);
+        return super.play(board, position);
     }
 }
