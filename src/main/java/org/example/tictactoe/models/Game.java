@@ -41,6 +41,7 @@ public class Game {
     public Position undo() {
         Position lastPlayed = undoStack.pop();
         totalMovesLeft++;
+        this.board.getCell(lastPlayed).setSymbol(null);
         return lastPlayed;
     }
 
