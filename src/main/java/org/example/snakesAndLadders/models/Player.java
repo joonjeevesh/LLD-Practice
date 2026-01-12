@@ -50,7 +50,10 @@ public class Player {
         return Objects.hash(id);
     }
 
-    public void setPlayerStatus(PlayerStatus playerStatus) {
-        this.playerStatus = playerStatus;
+    public PlayerStatus updatePlayerStatus(int piecesReachedCount) {
+        if(piecesReachedCount == this.pieces.size()) {
+            playerStatus = PlayerStatus.WON;
+        }
+        return this.playerStatus;
     }
 }

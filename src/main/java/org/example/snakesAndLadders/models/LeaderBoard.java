@@ -25,7 +25,7 @@ public class LeaderBoard {
         }
     }
 
-    public PlayerStatus increasePlayerPiecesReachedByOne(Player player) {
+    public int increasePlayerPiecesReachedByOne(Player player) {
         int piecesReachedCountForPlayer = playerToPiecesReachedMap.get(player);
         piecesReachedToPlayersMap.get(piecesReachedCountForPlayer).remove(player);
 
@@ -33,11 +33,7 @@ public class LeaderBoard {
 
         playerToPiecesReachedMap.put(player, piecesReachedCountForPlayer);
         piecesReachedToPlayersMap.get(piecesReachedCountForPlayer).add(player);
-        if (piecesReachedCountForPlayer == totalPiecesPerPlayer) {
-            return PlayerStatus.WON;
-        }
-
-        return PlayerStatus.PLAYING;
+        return piecesReachedCountForPlayer;
     }
 
     public int countPlayersWon() {

@@ -42,13 +42,13 @@ public class Game {
 
     public PlayerStatus move(Player player, Piece piece, int diceRoll) {
         PieceStatus pieceStatus = piece.move(this.board, diceRoll);
-
         PlayerStatus playerStatus = player.getPlayerStatus();
+
         if(pieceStatus == PieceStatus.REACHED) {
-            playerStatus = leaderBoard.increasePlayerPiecesReachedByOne(player);
+            int piecesReachedForPlayer = leaderBoard.increasePlayerPiecesReachedByOne(player);
+            playerStatus = player.updatePlayerStatus(piecesReachedForPlayer);
         }
 
-        player.setPlayerStatus(playerStatus);
         return playerStatus;
     }
 
